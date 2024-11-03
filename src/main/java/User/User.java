@@ -46,6 +46,6 @@ public class User {
     }
 
     public void completeTask(String description){
-        taskList.completeTast(description);
+        taskList.completeTask(description);
     }
 }

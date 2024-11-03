@@ -35,8 +35,9 @@ public class TaskList {
                 tempTask = tempTask.next;
                 index++;
             }
-            Task nextNode = task;
+            Task nextNode = tempTask.next;
             task.next = nextNode;
+            tempTask.next = task;
         }
         size++;
 
@@ -48,7 +49,14 @@ public class TaskList {
         } else {
             Task tempTask = head;
             for (int i = 0; i < size; i++){
-                System.out.print(tempTask.getDescript());
+                if(tempTask.isCompleted()) {
+                    System.out.print(tempTask.getDescript() + " completion statues: completed" );
+                }
+
+                else {
+                    System.out.print(tempTask.getDescript() + " completion statues: pending" );
+
+                }
                 if (i !=size -1 ){
                     System.out.print(" -> ");
                 }
@@ -62,7 +70,7 @@ public class TaskList {
         if (head != null){
             Task tempTask = head;
             for (int i = 0; i < size; i++){
-                if (tempTask.getDescript() == description){
+                if (tempTask.getDescript().equals(description)){
                     return tempTask;
                 }
                 tempTask = tempTask.next;
@@ -72,7 +80,7 @@ public class TaskList {
         return null;
     }
 
-    public void completeTast(String description){
+    public void completeTask(String description){
         Task task = searchNode(description);
 
         if(task == null){
